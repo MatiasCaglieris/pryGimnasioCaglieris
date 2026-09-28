@@ -21,6 +21,7 @@ namespace pryGimnasioCaglieris
         private void addItems(ComboBox cbo, params string[] items)
         {
             cbo.Items.AddRange(items);
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -41,6 +42,11 @@ namespace pryGimnasioCaglieris
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
+        {
+            addItems(cboCuotas, "1", "3", "6");
+        }
+
+        private void gpbPago_Enter(object sender, EventArgs e)
         {
 
         }
