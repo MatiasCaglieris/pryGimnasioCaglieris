@@ -50,5 +50,17 @@ namespace pryGimnasioCaglieris
         {
 
         }
+
+        private void txtMeses_TextChanged(object sender, EventArgs e)
+        {
+            KeyPressEventArgs keyPressEventArgs if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
+            {
+                e.Handled = false; // Allow the input
+            }
+            else
+            {
+                e.Handled = true; // Block the input
+            }
+        }
     }
 }

@@ -46,8 +46,8 @@
             this.cboCuotas = new System.Windows.Forms.ComboBox();
             this.chkCasillero = new System.Windows.Forms.CheckBox();
             this.gpbPlanyTurno = new System.Windows.Forms.GroupBox();
-            this.gpbPago = new System.Windows.Forms.GroupBox();
             this.lblMeses = new System.Windows.Forms.Label();
+            this.gpbPago = new System.Windows.Forms.GroupBox();
             this.btnCalcular = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.gpbDatosPersonales.SuspendLayout();
@@ -126,6 +126,7 @@
             this.txtMeses.Name = "txtMeses";
             this.txtMeses.Size = new System.Drawing.Size(100, 20);
             this.txtMeses.TabIndex = 8;
+            this.txtMeses.TextChanged += new System.EventHandler(this.txtMeses_TextChanged);
             // 
             // gpbDatosPersonales
             // 
@@ -226,6 +227,15 @@
             this.gpbPlanyTurno.TabStop = false;
             this.gpbPlanyTurno.Text = "PLAN - TURNO";
             // 
+            // lblMeses
+            // 
+            this.lblMeses.AutoSize = true;
+            this.lblMeses.Location = new System.Drawing.Point(15, 91);
+            this.lblMeses.Name = "lblMeses";
+            this.lblMeses.Size = new System.Drawing.Size(38, 13);
+            this.lblMeses.TabIndex = 14;
+            this.lblMeses.Text = "Meses";
+            // 
             // gpbPago
             // 
             this.gpbPago.Controls.Add(this.rdbEfectivo);
@@ -240,15 +250,6 @@
             this.gpbPago.Text = "FORMA DE PAGO";
             this.gpbPago.Enter += new System.EventHandler(this.gpbPago_Enter);
             // 
-            // lblMeses
-            // 
-            this.lblMeses.AutoSize = true;
-            this.lblMeses.Location = new System.Drawing.Point(15, 91);
-            this.lblMeses.Name = "lblMeses";
-            this.lblMeses.Size = new System.Drawing.Size(38, 13);
-            this.lblMeses.TabIndex = 14;
-            this.lblMeses.Text = "Meses";
-            // 
             // btnCalcular
             // 
             this.btnCalcular.Location = new System.Drawing.Point(55, 459);
@@ -260,6 +261,7 @@
             // 
             // btnLimpiar
             // 
+            this.btnLimpiar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnLimpiar.Location = new System.Drawing.Point(183, 458);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
@@ -269,9 +271,11 @@
             // 
             // frmInscripcion
             // 
+            this.AcceptButton = this.btnCalcular;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.CancelButton = this.btnLimpiar;
             this.ClientSize = new System.Drawing.Size(767, 520);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnCalcular);
