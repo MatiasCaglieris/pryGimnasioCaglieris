@@ -12,9 +12,23 @@ namespace pryGimnasioCaglieris
 {
     public partial class frmInscripcion : Form
     {
+        // Constantes a nivel de clase (NOMBRES EN MAYÚSCULAS)
+        // Ajustar los valores por defecto según necesidad
+        private const decimal PRECIO_NATACION = 100.00m;
+        private const decimal PRECIO_BASE_MENSUAL = 500.00m;
+        private const int EDAD_MINIMA = 14;
+        private const decimal PORC_DESCUENTO_ESTUDIANTE = 0.15m; // 15%
+        private const decimal PORC_AJUSTE_POR_TARJETA = 0.05m;  // 5%
+
         public frmInscripcion()
         {
+
+
             InitializeComponent();
+            // Asociar los filtros después de inicializar los controles.
+            txtNombre.KeyPress += SoloLetras_KeyPress;
+            txtEdad.KeyPress += SoloDigitos_KeyPress;
+            txtMeses.KeyPress += SoloDigitos_KeyPress;
         }
 
         private void EventoInicial()
@@ -87,6 +101,56 @@ namespace pryGimnasioCaglieris
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             EventoInicial();
+        }
+
+        private void btnCalcular_Click(object sender, EventArgs e)
+        {
+            // Declarar e inicializar las variables del cálculo (camelCase)
+            string nombre = txtNombre.Text.Trim();
+            int edad = 0;
+            int meses = 1;
+            decimal precioMensual = 0m;
+            decimal subtotal = 0m;
+            decimal porcentajeDescuento = 0m;
+            decimal porcentajeAjustePorPago = 0m;
+            decimal total = 0m;
+            decimal valorCuota = 0m;
+
+            // Parsear entradas de usuario de forma segura
+            int.TryParse(txtEdad.Text, out edad);
+            int.TryParse(txtMeses.Text, out meses);
+
+            // -> Aquí irá la lógica de cálculo usando las constantes de clase
+        }
+
+        // Manejador KeyPress para permitir sólo dígitos y Backspace
+        private void SoloDigitos_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true; // descartar la tecla
+            }
+        }
+
+        // Permitir letras, espacios y Backspace en el nombre; descartar números.
+        private void SoloLetras_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsLetter(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar) &&
+                e.KeyChar != (char)Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Reusar el filtro de letras para el evento del diseñador
+            SoloLetras_KeyPress(sender, e);
+        }
+
+        private void txtNombre_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
     }
