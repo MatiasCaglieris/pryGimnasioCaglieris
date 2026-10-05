@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInscripcion));
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblEdad = new System.Windows.Forms.Label();
             this.chkEstudiante = new System.Windows.Forms.CheckBox();
@@ -50,6 +49,7 @@
             this.gpbPago = new System.Windows.Forms.GroupBox();
             this.btnCalcular = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.gpbDatosPersonales.SuspendLayout();
             this.gpbPlanyTurno.SuspendLayout();
             this.gpbPago.SuspendLayout();
@@ -103,6 +103,10 @@
             // 
             this.cboPlan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPlan.FormattingEnabled = true;
+            this.cboPlan.Items.AddRange(new object[] {
+            "Musculacion",
+            "Funcional",
+            "Natacion"});
             this.cboPlan.Location = new System.Drawing.Point(114, 55);
             this.cboPlan.Name = "cboPlan";
             this.cboPlan.Size = new System.Drawing.Size(121, 21);
@@ -113,6 +117,10 @@
             // 
             this.cboTurno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTurno.FormattingEnabled = true;
+            this.cboTurno.Items.AddRange(new object[] {
+            "Mañana",
+            "Tarde",
+            "Noche"});
             this.cboTurno.Location = new System.Drawing.Point(114, 26);
             this.cboTurno.Name = "cboTurno";
             this.cboTurno.Size = new System.Drawing.Size(121, 21);
@@ -124,7 +132,7 @@
             this.txtMeses.Location = new System.Drawing.Point(114, 88);
             this.txtMeses.MaxLength = 2;
             this.txtMeses.Name = "txtMeses";
-            this.txtMeses.Size = new System.Drawing.Size(100, 20);
+            this.txtMeses.Size = new System.Drawing.Size(49, 20);
             this.txtMeses.TabIndex = 8;
             this.txtMeses.TextChanged += new System.EventHandler(this.txtMeses_TextChanged);
             // 
@@ -134,9 +142,9 @@
             this.gpbDatosPersonales.Controls.Add(this.lblNombre);
             this.gpbDatosPersonales.Controls.Add(this.lblEdad);
             this.gpbDatosPersonales.Controls.Add(this.txtNombre);
-            this.gpbDatosPersonales.Location = new System.Drawing.Point(12, 12);
+            this.gpbDatosPersonales.Location = new System.Drawing.Point(209, 55);
             this.gpbDatosPersonales.Name = "gpbDatosPersonales";
-            this.gpbDatosPersonales.Size = new System.Drawing.Size(330, 135);
+            this.gpbDatosPersonales.Size = new System.Drawing.Size(330, 96);
             this.gpbDatosPersonales.TabIndex = 9;
             this.gpbDatosPersonales.TabStop = false;
             this.gpbDatosPersonales.Text = "DATOS PERSONALES";
@@ -195,10 +203,11 @@
             // 
             this.cboCuotas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCuotas.FormattingEnabled = true;
-            this.cboCuotas.Location = new System.Drawing.Point(191, 27);
+            this.cboCuotas.Location = new System.Drawing.Point(191, 31);
             this.cboCuotas.Name = "cboCuotas";
-            this.cboCuotas.Size = new System.Drawing.Size(35, 21);
+            this.cboCuotas.Size = new System.Drawing.Size(75, 21);
             this.cboCuotas.TabIndex = 12;
+            this.cboCuotas.SelectedIndexChanged += new System.EventHandler(this.cboCuotas_SelectedIndexChanged);
             // 
             // chkCasillero
             // 
@@ -220,7 +229,7 @@
             this.gpbPlanyTurno.Controls.Add(this.chkCasillero);
             this.gpbPlanyTurno.Controls.Add(this.cboPlan);
             this.gpbPlanyTurno.Controls.Add(this.chkEstudiante);
-            this.gpbPlanyTurno.Location = new System.Drawing.Point(12, 153);
+            this.gpbPlanyTurno.Location = new System.Drawing.Point(209, 171);
             this.gpbPlanyTurno.Name = "gpbPlanyTurno";
             this.gpbPlanyTurno.Size = new System.Drawing.Size(330, 162);
             this.gpbPlanyTurno.TabIndex = 14;
@@ -242,7 +251,7 @@
             this.gpbPago.Controls.Add(this.rdbTarjeta);
             this.gpbPago.Controls.Add(this.cboCuotas);
             this.gpbPago.Controls.Add(this.lblFormadePago);
-            this.gpbPago.Location = new System.Drawing.Point(12, 324);
+            this.gpbPago.Location = new System.Drawing.Point(209, 357);
             this.gpbPago.Name = "gpbPago";
             this.gpbPago.Size = new System.Drawing.Size(330, 114);
             this.gpbPago.TabIndex = 15;
@@ -252,7 +261,7 @@
             // 
             // btnCalcular
             // 
-            this.btnCalcular.Location = new System.Drawing.Point(55, 459);
+            this.btnCalcular.Location = new System.Drawing.Point(382, 492);
             this.btnCalcular.Name = "btnCalcular";
             this.btnCalcular.Size = new System.Drawing.Size(75, 23);
             this.btnCalcular.TabIndex = 16;
@@ -262,21 +271,34 @@
             // btnLimpiar
             // 
             this.btnLimpiar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnLimpiar.Location = new System.Drawing.Point(183, 458);
+            this.btnLimpiar.Location = new System.Drawing.Point(256, 492);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpiar.TabIndex = 17;
             this.btnLimpiar.Text = "LIMPIAR";
             this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
+            // lblTitulo
+            // 
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("MS Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.Location = new System.Drawing.Point(221, 9);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(281, 35);
+            this.lblTitulo.TabIndex = 18;
+            this.lblTitulo.Text = "GIMNASIO SIGLO";
+            this.lblTitulo.Click += new System.EventHandler(this.lblTitulo_Click);
             // 
             // frmInscripcion
             // 
             this.AcceptButton = this.btnCalcular;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.CancelButton = this.btnLimpiar;
-            this.ClientSize = new System.Drawing.Size(767, 520);
+            this.ClientSize = new System.Drawing.Size(739, 583);
+            this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.btnCalcular);
             this.Controls.Add(this.gpbPago);
@@ -287,7 +309,7 @@
             this.Name = "frmInscripcion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gimnasio Siglo — Inscripción";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.frminscripcion_Load);
             this.gpbDatosPersonales.ResumeLayout(false);
             this.gpbDatosPersonales.PerformLayout();
             this.gpbPlanyTurno.ResumeLayout(false);
@@ -295,6 +317,7 @@
             this.gpbPago.ResumeLayout(false);
             this.gpbPago.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -321,6 +344,7 @@
         private System.Windows.Forms.Label lblMeses;
         private System.Windows.Forms.Button btnCalcular;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Label lblTitulo;
     }
 }
 

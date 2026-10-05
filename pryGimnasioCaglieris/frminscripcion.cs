@@ -17,18 +17,37 @@ namespace pryGimnasioCaglieris
             InitializeComponent();
         }
 
-        
+        private void EventoInicial()
+        {
+            txtNombre.Clear();
+            txtEdad.Clear();
+            txtMeses.Text = "1";
+            cboCuotas.SelectedIndex = 0;
+            cboPlan.SelectedIndex = 0;
+            cboTurno.SelectedIndex = 0;
+            chkCasillero.Checked = false;
+            chkEstudiante.Checked = false;
+            rdbEfectivo.Checked = true;
+            rdbTarjeta.Checked = false;
+            btnCalcular.Enabled = false;
+
+
+        }
+
+
+
         private void addItems(ComboBox cbo, params string[] items)
         {
             cbo.Items.AddRange(items);
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void frminscripcion_Load(object sender, EventArgs e)
         {
-            
-            addItems(cboPlan, "Plan Musculacion", "Plan Funcional", "Plan Natacion");
-           addItems(cboTurno, "Mañana", "Tarde", "Noche");
+            addItems(cboCuotas, "1", "3", "6");
+
+            EventoInicial();
+
         }
 
         private void cboPlan_SelectedIndexChanged(object sender, EventArgs e)
@@ -43,7 +62,6 @@ namespace pryGimnasioCaglieris
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-            addItems(cboCuotas, "1", "3", "6");
         }
 
         private void gpbPago_Enter(object sender, EventArgs e)
@@ -53,14 +71,23 @@ namespace pryGimnasioCaglieris
 
         private void txtMeses_TextChanged(object sender, EventArgs e)
         {
-            KeyPressEventArgs keyPressEventArgs if (char.IsDigit(e.KeyChar) || char.IsControl(e.KeyChar))
-            {
-                e.Handled = false; // Allow the input
+           
             }
-            else
-            {
-                e.Handled = true; // Block the input
-            }
+
+        private void lblTitulo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboCuotas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            EventoInicial();
         }
     }
-}
+    }
+
