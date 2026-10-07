@@ -14,6 +14,21 @@ namespace pryGimnasioCaglieris
 {
     public partial class frminscripcion : Form
     {
+        struct SOCIO
+        {
+            public string nombre;
+            public int edad;
+            public string categoria;
+            public string plan;
+            public string horario;
+            public int meses;
+            public string formadepago;
+            public decimal total;
+            public decimal valorcuota;
+
+        }
+
+
         const decimal Precio_Musculacion = 15000m;
         const decimal Precio_Funcional = 18000m;
         const decimal Precio_Natacion = 22000m;
@@ -28,6 +43,7 @@ namespace pryGimnasioCaglieris
         const decimal Descuento_Efectivo = 0.10m;
         const decimal Recargo_3_Cuotas = 0.10m;
         const decimal Recargo_6_Cuotas = 0.20m;
+        
 
         public frminscripcion()
         {
@@ -70,61 +86,12 @@ namespace pryGimnasioCaglieris
         }
 
         private void cboPlan_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string plan = cboPlan.Text;
-            decimal preciomensual = 0;
-            switch (plan)
-            {
-                case "Musculacion":
-                    preciomensual = Precio_Musculacion;
-                    break;
-
-                case "Funcional":
-                    preciomensual = Precio_Funcional;
-                    break;
-
-                case "Natacion":
-                    preciomensual = Precio_Natacion;
-                    break;
-
-                default:
-                    MessageBox.Show(
-                        "el plan seleccionado no es valido",
-                        "error broder",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-
-                    return;
-            }
-                      
-            
+        { 
         }
 
         private void cboTurno_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string horario = "";
-            switch (cboTurno.SelectedIndex)
-            {
-                case 0:
-                    horario = "7 a 12 hrs";
-                    break;
-
-                case 1:
-                    horario = "14 a 18 hrs";
-                    break;
-
-                case 2:
-                    horario = "18 a 23 hrs";
-                    break;
-
-                default:
-                    MessageBox.Show(
-                        "el turno no es valido Bolsa de as",
-                        "error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                    return ;
-            }
+       
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -166,10 +133,18 @@ namespace pryGimnasioCaglieris
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
             if (char.IsLower(e.KeyChar))
             {
                 e.KeyChar = char.ToUpper(e.KeyChar);
             }
+
+
         }
 
         private void Campos_TextChanged(object sender, EventArgs e)
@@ -207,9 +182,61 @@ namespace pryGimnasioCaglieris
 
         private void BtnCalcular_Click(object sender, EventArgs e)
         {
+            string plan = cboPlan.Text;
+            decimal precioMensual = 0;
+            switch (plan)
+            {
+                case "Musculacion":
+                    precioMensual = Precio_Musculacion;
+                    break;
+
+                case "Funcional":
+                    precioMensual = Precio_Funcional;
+                    break;
+
+                case "Natacion":
+                    precioMensual = Precio_Natacion;
+                    break;
+
+                default:
+                    MessageBox.Show(
+                        "el plan seleccionado no es valido",
+                        "error broder",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+
+                    return;
+            }
+
+
+            string horario = "";
+            switch (cboTurno.SelectedIndex)
+            {
+                case 0:
+                    horario = "7 a 12 hrs";
+                    break;
+
+                case 1:
+                    horario = "14 a 18 hrs";
+                    break;
+
+                case 2:
+                    horario = "18 a 23 hrs";
+                    break;
+
+                default:
+                    MessageBox.Show(
+                        "el turno no es valido Bolsa de as",
+                        "error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    return;
+            }
+
             string nombre = txtNombre.Text;
             int edad = int.Parse(txtEdad.Text);
             int meses = int.Parse(txtMeses.Text);
+            
 
             if (edad < Edad_Minima)
             {
@@ -233,12 +260,119 @@ namespace pryGimnasioCaglieris
                 return;
             }
 
+            if (nombre == "ADMIN")
+            {
+                MessageBox.Show(
+                    "Advertencia: NO ME TRATE COMO UN PENDEJO SABE ",
+                    "Error broder : OJITO CON LO QUE PONES ",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+
+            if (chkCasillero.Checked) precioMensual += Precio_Casillero;
+
+            decimal subtotal = precioMensual * meses;
+
+            decimal porcentajeDescuento;
+
+            if (edad < 18)
+            {
+                porcentajeDescuento = 0.25m;
+            }
+            else
+            {
+                if (edad >= 65)
+                {
+                    porcentajeDescuento = 0.30m;
+                }
+                else
+                {
+                    if (chkEstudiante.Checked)
+                        porcentajeDescuento = 0.15m;
+                    else
+                        porcentajeDescuento = 0m;
+                }
+            }
+
+            decimal descuento = subtotal * porcentajeDescuento;
+
+            decimal importecondescuento = subtotal - descuento;
+
+            decimal porcentajeajuste = 0;
+            
+            int cuotas = 0;
+
+            if (rdbEfectivo.Checked)
+            {
+                porcentajeajuste = -0.10m;
+            }
+            else
+            {
+                 cuotas = int.Parse(cboCuotas.Text);
+
+                if (cuotas == 1)
+                    porcentajeajuste = 0m;
+                else if (cuotas == 3)
+                    porcentajeajuste = 0.10m;
+                else if (cuotas == 6)
+                    porcentajeajuste = 0.20m;
+            }
+
+            decimal ajuste = importecondescuento * porcentajeajuste;
+
+            decimal total = importecondescuento + ajuste;
+
+            string categoria = edad < 18 ? "menor" : "mayor";
+
+            string formadepago = rdbEfectivo.Checked
+                ? "efectivo"
+                : "tarjeta en " + cuotas + " cuotas";
+
+            decimal valorcuota = rdbEfectivo.Checked
+                ? total
+                : total / cuotas;
+
+            SOCIO socio = new SOCIO(); // <- acordate que esto crea una variable que tiene los datos del socio broly
+
+            socio.nombre = nombre;
+            socio.edad = edad;
+            socio.categoria = categoria;
+            socio.plan = plan;
+            socio.horario = horario;
+            socio.meses = meses;
+            socio.formadepago = formadepago;
+            socio.total = total;
+            socio.valorcuota = valorcuota;
+
+            string mensaje =
+                "Nombre: " + socio.nombre +
+                "\nEdad: " + socio.edad +
+                "\nCategoria: " + socio.categoria +
+                "\nPlan: " + socio.plan +
+                "\nHorario: " + socio.horario +
+                "\nMeses: " + socio.meses +
+                "\nForma de Pago: " + socio.formadepago +
+                "\nTotal: " + socio.total.ToString("C") +
+                "\nValor de cuota: " + socio.valorcuota.ToString("C");
+
+            MessageBox.Show(
+                mensaje,
+                "datos del socio",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information );
+
+            EventoInicial();
 
         }
 
         private void chkCasillero_CheckedChanged(object sender, EventArgs e)
         {
-            //if (chkCasillero.Checked) precioMensual += Precio_Casillero;
+            
+        }
+
+        private void gpbPlanyTurno_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
