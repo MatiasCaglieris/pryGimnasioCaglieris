@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-// -------------- PARA PENSAR ESTE CODIGO DE NENAZO TIKTOK ----------------
+// -------------- PARA PENSAR ESTE CODIGO ----------------
 
 namespace pryGimnasioCaglieris
 {
@@ -64,7 +64,7 @@ namespace pryGimnasioCaglieris
             rdbTarjeta.Checked = false;
             btnCalcular.Enabled = false;
             cboCuotas.Enabled = false;
-            txtNombre.Focus();    //  <-- esta linea de codigo es medio nenazo IA PROFE YO SE LA EXPLICO TRANQUI
+            txtNombre.Focus();    //  <-- esta linea de codigo es medio nenazo tablet PROFE YO SE LA EXPLICO
 
 
         }
@@ -177,7 +177,7 @@ namespace pryGimnasioCaglieris
 
         }
 
-        // AHORA VIENE LA VERDADERA CREMA DE LAS CREMAS EL MARDITO BOTON DE CALCULAR HUESO CUANTO PELUCHE
+        // AHORA VIENE LA MAGIA
 
 
         private void BtnCalcular_Click(object sender, EventArgs e)
@@ -332,7 +332,7 @@ namespace pryGimnasioCaglieris
                 ? total
                 : total / cuotas;
 
-            SOCIO socio = new SOCIO(); // <- acordate que esto crea una variable que tiene los datos del socio broly
+            SOCIO socio = new SOCIO(); // <- acordate que esto crea una variable que tiene los datos del socio bro
 
             socio.nombre = nombre;
             socio.edad = edad;
