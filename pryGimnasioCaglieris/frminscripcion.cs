@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -344,6 +345,8 @@ namespace pryGimnasioCaglieris
             socio.total = total;
             socio.valorcuota = valorcuota;
 
+
+
             string mensaje =
                 "Nombre: " + socio.nombre +
                 "\nEdad: " + socio.edad +
@@ -355,11 +358,28 @@ namespace pryGimnasioCaglieris
                 "\nTotal: " + socio.total.ToString("C") +
                 "\nValor de cuota: " + socio.valorcuota.ToString("C");
 
+            
+
+
             MessageBox.Show(
                 mensaje,
                 "datos del socio",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information );
+
+           
+
+
+            StreamWriter swDatosGimnasio = new StreamWriter("BasedeDatos.txt", true);
+            swDatosGimnasio.WriteLine(socio.nombre, socio.plan, socio.formadepago);
+
+            swDatosGimnasio.WriteLine(socio.plan);
+            swDatosGimnasio.WriteLine(socio.valorcuota);
+            swDatosGimnasio.WriteLine(socio.total);
+
+
+            swDatosGimnasio.Close();
+
 
             EventoInicial();
 
@@ -373,6 +393,11 @@ namespace pryGimnasioCaglieris
         private void gpbPlanyTurno_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+           
         }
     }
 }

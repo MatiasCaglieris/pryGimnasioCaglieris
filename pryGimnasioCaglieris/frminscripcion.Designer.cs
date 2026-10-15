@@ -54,6 +54,7 @@ namespace pryGimnasioCaglieris
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnConsultar = new System.Windows.Forms.Button();
             this.gpbDatosPersonales.SuspendLayout();
             this.gpbPlanyTurno.SuspendLayout();
             this.gpbPago.SuspendLayout();
@@ -288,7 +289,7 @@ namespace pryGimnasioCaglieris
             this.btnCalcular.Enabled = false;
             this.btnCalcular.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCalcular.ForeColor = System.Drawing.Color.Black;
-            this.btnCalcular.Location = new System.Drawing.Point(380, 508);
+            this.btnCalcular.Location = new System.Drawing.Point(395, 492);
             this.btnCalcular.Name = "btnCalcular";
             this.btnCalcular.Size = new System.Drawing.Size(102, 32);
             this.btnCalcular.TabIndex = 4;
@@ -302,7 +303,7 @@ namespace pryGimnasioCaglieris
             this.btnLimpiar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnLimpiar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.ForeColor = System.Drawing.Color.Black;
-            this.btnLimpiar.Location = new System.Drawing.Point(245, 508);
+            this.btnLimpiar.Location = new System.Drawing.Point(246, 492);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(102, 32);
             this.btnLimpiar.TabIndex = 5;
@@ -334,6 +335,18 @@ namespace pryGimnasioCaglieris
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
+            // btnConsultar
+            // 
+            this.btnConsultar.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.btnConsultar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConsultar.Location = new System.Drawing.Point(246, 532);
+            this.btnConsultar.Name = "btnConsultar";
+            this.btnConsultar.Size = new System.Drawing.Size(251, 33);
+            this.btnConsultar.TabIndex = 7;
+            this.btnConsultar.Text = "&CONSULTAR";
+            this.btnConsultar.UseVisualStyleBackColor = false;
+            this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
+            // 
             // frminscripcion
             // 
             this.AcceptButton = this.btnCalcular;
@@ -342,7 +355,8 @@ namespace pryGimnasioCaglieris
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.CancelButton = this.btnLimpiar;
-            this.ClientSize = new System.Drawing.Size(749, 561);
+            this.ClientSize = new System.Drawing.Size(749, 577);
+            this.Controls.Add(this.btnConsultar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.btnLimpiar);
@@ -395,6 +409,7 @@ namespace pryGimnasioCaglieris
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Label lblCuotas;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnConsultar;
 
         public EventHandler btnCalcular_Click { get; private set; }
     }
