@@ -55,6 +55,7 @@ namespace pryGimnasioCaglieris
             this.lblTitulo = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnConsultar = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.gpbDatosPersonales.SuspendLayout();
             this.gpbPlanyTurno.SuspendLayout();
             this.gpbPago.SuspendLayout();
@@ -347,6 +348,16 @@ namespace pryGimnasioCaglieris
             this.btnConsultar.UseVisualStyleBackColor = false;
             this.btnConsultar.Click += new System.EventHandler(this.btnConsultar_Click);
             // 
+            // listBox1
+            // 
+            this.listBox1.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(12, 492);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(183, 69);
+            this.listBox1.TabIndex = 8;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
             // frminscripcion
             // 
             this.AcceptButton = this.btnCalcular;
@@ -356,6 +367,7 @@ namespace pryGimnasioCaglieris
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.CancelButton = this.btnLimpiar;
             this.ClientSize = new System.Drawing.Size(749, 577);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnConsultar);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblTitulo);
@@ -410,6 +422,7 @@ namespace pryGimnasioCaglieris
         private System.Windows.Forms.Label lblCuotas;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnConsultar;
+        private System.Windows.Forms.ListBox listBox1;
 
         public EventHandler btnCalcular_Click { get; private set; }
     }

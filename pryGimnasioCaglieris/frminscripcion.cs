@@ -29,6 +29,13 @@ namespace pryGimnasioCaglieris
 
         }
 
+        //Declara array de 1 dimension
+        string[] vecSocio = new string[15];
+        //Indice para el array
+        int indeRegistro = 0;
+
+        List<SOCIO> socios = new List<SOCIO>();
+
 
         const decimal Precio_Musculacion = 15000m;
         const decimal Precio_Funcional = 18000m;
@@ -344,6 +351,7 @@ namespace pryGimnasioCaglieris
             socio.formadepago = formadepago;
             socio.total = total;
             socio.valorcuota = valorcuota;
+            socios.Add(socio);
 
 
 
@@ -380,6 +388,17 @@ namespace pryGimnasioCaglieris
 
             swDatosGimnasio.Close();
 
+            //Grabar array
+            //Concatenar lo que tengo en el struct
+            vecSocio[0] = socio.nombre;
+            indeRegistro += 1;
+
+            if (indeRegistro == vecSocio.Length)
+            {
+                MessageBox.Show("Array completo");
+                btnCalcular.Visible = false;
+            }
+
 
             EventoInicial();
 
@@ -397,7 +416,40 @@ namespace pryGimnasioCaglieris
 
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-           
+            listBox1.Items.Clear();
+
+            foreach (SOCIO socio in socios)
+            {
+                listBox1.Items.Add(socio.nombre);
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int indice = listBox1.SelectedIndex;
+
+            if (indice < 0 || indice >= socios.Count)
+                return;
+
+            SOCIO socio = socios[indice];
+
+            string mensaje =
+                "Nombre: " + socio.nombre +
+                "\nEdad: " + socio.edad +
+                "\nCategoria: " + socio.categoria +
+                "\nPlan: " + socio.plan +
+                "\nTurno: " + socio.horario +
+                "\nMeses: " + socio.meses +
+                "\nForma de pago: " + socio.formadepago +
+                "\nTotal: " + socio.total.ToString("C") +
+                "\nValor de cuota: " + socio.valorcuota.ToString("C");
+
+            MessageBox.Show(
+                mensaje,
+                "Datos del socio",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information
+            );
         }
     }
 }
